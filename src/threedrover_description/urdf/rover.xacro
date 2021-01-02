@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+
+<robot name="plasticRover" xmlns:xacro="https://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="macros.xacro" />
+	<xacro:include filename="mats.xacro" />
+
+	<link name="link_chassis">
+		<!-- values calculated in fusion360 -->
+		<inertial>	
+			<mass value="10"/>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<inertia
+				ixx =  "0.06062"
+				ixy =  "0.0003601"
+				ixz = "-0.00002478"
+				iyy =  "0.0003601"
+				iyz =  "0"
+				izz =  "0.08117"
+			/>
+		</inertial>
+		<collision>
+			<geometry>
+				<!--Again this is from the fusion360-->
+				<box size = "0.511 0.4 0.208"/>
+			</geometry>
+			<origin rpy="1.570796 0 0" xyz="0 0 0"/>
+		</collision>
+		<visual>
+			<geometry>				
+				<mesh filename="package://threedrover_description/MODELS/OWR_20_CHASSIS_00_ASM.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<origin rpy="1.570796 0 0" xyz="0 0 0"/>
+     			<material name="white"/>
+		</visual>
+	</link>
+	<!-- Bogie -->
+	<xacro:link_bogie_stat name="link_right_bogie_stat"  orientation="1" />  
+	<xacro:link_bogie_rot name="link_right_bogie_rot"  orientation="1"/>  
+	<xacro:link_bogie_stat name="link_left_bogie_stat" orientation="-1"/>
+	<xacro:link_bogie_rot name="link_left_bogie_rot" orientation="-1" />
+g
+	<xacro:joint_stat name="joint_bogie_left_stat" child="link_left_bogie_stat" parent="joint_chassis" origin_xyz="0 0 0"/>
+	<xacro:joint_stat name="joint_bogie_right_stat" child="link_right_bogie_stat" parent="joint_chassis" origin_xyz="0 0 0"/>
+	<xacro:joint_rot name="joint_bogie_right_rot" child="link_right_bogie_rot" parent="link_right_bogie_stat" origin_xyz="0 0 0"/>
+	<xacro:joint_rot name="joint_bogie_left_rot" child="link_left_bogie_rot" parent="link_left_bogie_stat" origin_xyz="0 0 0"/>
+	
+	<!-- Wheel -->
+
+	<xacro:link_wheel_stat name="link_FRSWheel"  orientation="1" end="1"/>  
+	<xacro:link_wheel_stat name="link_BRSWheel"  orientation="1" end="-1"/>  
+	<xacro:link_wheel_stat name="link_FLSWheel"  orientation="-1" end="1"/>  
+	<xacro:link_wheel_stat name="link_BLSWheel"  orientation="-1" end="-1"/>  
+
+	<xacro:link_wheel_rot name="link_FRRWheel"  orientation="1" end="1"/>  
+	<xacro:link_wheel_rot name="link_BRRWheel"  orientation="1" end="-1"/>  
+	<xacro:link_wheel_rot name="link_FLRWheel"  orientation="-1" end="1"/>  
+	<xacro:link_wheel_rot name="link_BLRWheel"  orientation="-1" end="-1"/>  
+
+
+
+	<xacro:joint_stat name="wheelmount_FL" child="link_FLSWheel" parent="link_left_bogie_rot" origin_xyz="0 0 0"/>
+	<xacro:joint_stat name="wheelmount_BL" child="link_BLSWheel" parent="link_left_bogie_rot" origin_xyz="0 0 0"/>
+	<xacro:joint_stat name="wheelmount_FR" child="link_FRSWheel" parent="link_right_bogie_rot" origin_xyz="0 0 0"/>
+	<xacro:joint_stat name="wheelmount_BR" child="link_BRSWheel" parent="link_right_bogie_rot" origin_xyz="0 0 0"/>
+
+	<xacro:joint_stat name="wheel_FL" child="link_FLRWheel" parent="link_FLSWheel" origin_xyz="0 0 0"/>
+	<xacro:joint_stat name="wheel_BL" child="link_BLRWheel" parent="link_BLSWheel" origin_xyz="0 0 0"/>
+	<xacro:joint_stat name="wheel_FR" child="link_FRRWheel" parent="link_FRSWheel" origin_xyz="0 0 0"/>
+	<xacro:joint_stat name="wheel_BR" child="link_BRRWheel" parent="link_BRSWheel" origin_xyz="0 0 0"/>
+	
+</robot>

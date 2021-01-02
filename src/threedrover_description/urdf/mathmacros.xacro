@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro">
+<!-- MATH ********************************************************** -->
+	<macro name="wpos" params="o e">
+		<xacro:property name="var_o" value="${o}" />
+		<xacro:property name="var_e" value="${e}" />
+		<xacro:if value="${var_o == '1'}">
+			<xacro:if value="${var_e == '1'}">
+				<origin rpy="${1.570796*o} 0 0" xyz="${-0.370*e} ${-(0.15516+0.134 + 0.078)*o} -0.24685"/>
+			</xacro:if>
+			<xacro:if value="${var_e == '-1'}">
+				<origin rpy="${1.570796*o} 0 0" xyz="${-0.370*e} ${-(0.15516+0.134 + 0.078)*o} -0.24685"/>
+			</xacro:if>
+		</xacro:if>
+		<xacro:if value="${var_o == '-1'}">
+			<xacro:if value="${var_e == '1'}">
+				<origin rpy="${1.570796*o} 0 0" xyz="${-0.370*e} ${-(0.15516+0.134 + 0.078)*o} -0.24685"/>
+			</xacro:if>
+			<xacro:if value="${var_e == '-1'}">
+				<origin rpy="${1.570796*o} 0 0" xyz="${-0.370*e} ${-(0.15516+0.134 + 0.078)*o} -0.24685"/>
+			</xacro:if>
+		</xacro:if>
+	</macro>
+</robot>
