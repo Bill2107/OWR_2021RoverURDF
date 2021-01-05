@@ -1,44 +1,40 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro">
 <!-- LINK_BOGIE ********************************************************** -->
-	<macro name ="link_bogie_stat" params="name orientation">
+	<macro name ="link_bogie_stat" params="name">
 		<link name="${name}">
 			<!-- values from the fusion360 files -->
 		    <inertial>
 		      <mass value="0.2"/>
-		      <origin rpy="${1.570796*orientation} 0 0" xyz="0 ${-0.15516*orientation} 0"/>
+			
 		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
 		    </inertial>
 		    <collision name="${name}_collision">
-		      <origin rpy="${1.570796*orientation} 0 0" xyz="0 ${-0.15516*orientation} 0"/>
+			
 	      		<geometry>
-				<mesh filename="package://threedrover_description/MODELS/OWR_20_BOGIE_00_ASM_STAT.stl" scale="0.001 0.001 0.001" />
+				<cylinder length="0.05" radius="0.05"/>
+				<!--<mesh filename="package://threedrover_description/MODELS/OWR_20_BOGIE_00_ASM_STAT.stl" scale="0.001 0.001 0.001" />-->
   		        </geometry>
 		    </collision>
 		    <visual name="${name}_visual">
-		      <origin rpy="${1.570796*orientation} 0 0" xyz="0 ${-0.15516*orientation} 0"/>
+			
 		      	<geometry>
-				<mesh filename="package://threedrover_description/MODELS/OWR_20_BOGIE_00_ASM_STAT.stl" scale="0.001 0.001 0.001" />
+				<cylinder length="0.05" radius="0.05"/>
+				<!--<mesh filename="package://threedrover_description/MODELS/OWR_20_BOGIE_00_ASM_STAT.stl" scale="0.001 0.001 0.001" />-->
 		     	 </geometry>
 		    </visual>
 	   	</link>
     	</macro>
-	<macro name ="link_bogie_rot" params="name orientation">
+	<macro name ="link_bogie_rot" params="name">
 		<link name="${name}">
 			<!-- values from the fusion360 files -->
 		    <inertial>
 		      <mass value="0.2"/>
-		      <origin rpy="${1.570796*orientation} ${(orientation ==-1)*(3.14) +orientation*0.06925171} 0" xyz="0 ${-0.15516*orientation} 0"/>
+			
 		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
 		    </inertial>
-		    <collision name="${name}_collision">
-		      <origin rpy="${1.570796*orientation} ${(orientation ==-1)*3.14 +orientation*0.06925171} 0" xyz="0 ${-0.15516*orientation} 0"/>
-	      		<geometry>
-				<mesh filename="package://threedrover_description/MODELS/OWR_20_BOGIE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" />
-  		        </geometry>
-		    </collision>
 		    <visual name="${name}_visual">
-		      <origin rpy="${1.570796*orientation} ${(orientation ==-1)*3.14 +orientation*0.06925171} 0" xyz="0 ${-0.15516*orientation} 0"/>
+			
 		      	<geometry>
 				<mesh filename="package://threedrover_description/MODELS/OWR_20_BOGIE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" />
 		     	 </geometry>
@@ -52,41 +48,38 @@
 			<!-- values from the fusion360 files -->
 		    <inertial>
 		      <mass value="0.2"/>
-		      <origin rpy="${1.570796*orientation} 0 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/>
 		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
 		    </inertial>
 		    <collision name="${name}_collision">
-		      <origin rpy="${1.570796*orientation} 0 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/>
 	      		<geometry>
-				<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_STAT.stl" scale="0.001 0.001 0.001" />
+				<cylinder length="0.05" radius="0.05"/>
   		        </geometry>
 		    </collision>
 		    <visual name="${name}_visual">
-		      <origin rpy="${1.570796*orientation} 0 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/>
 		      	<geometry>
-				<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_STAT.stl" scale="0.001 0.001 0.001" />
+				<cylinder length="0.05" radius="0.05"/>
+				<!-- <mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_STAT.stl" scale="0.001 0.001 0.001" /> -->
 		     	 </geometry>
 		    </visual>
 	   	</link>
     	</macro>
-	<macro name ="link_wheel_rot" params="name orientation end">
+	<macro name ="link_wheel_rot" params="name  orientation end">
 		<link name="${name}">
 			<!-- values from the fusion360 files -->
 		    <inertial>
 		      <mass value="0.2"/>
-		      <origin rpy="${1.570796*orientation} ${(orientation ==-1)*3.14} 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/>
 		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
 		    </inertial>
 		    <collision name="${name}_collision">
-		      <origin rpy="${1.570796*orientation} ${(orientation ==-1)*3.14} 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/>
-	      		<geometry>
-				<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" />
-  		        </geometry>
+				<geometry>
+			<!--	<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" /> -->
+				<cylinder length="0.098" radius="0.1"/>
+			</geometry>
 		    </collision>
 		    <visual name="${name}_visual">
-		      <origin rpy="${1.570796*orientation} ${(orientation ==-1)*3.14} 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/>
-		      	<geometry>
-				<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" />
+		      	<geometry> 
+				<!--	<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" /> -->
+				<cylinder length="0.098" radius="0.1"/>
 		     	 </geometry>
 		    </visual>
 	   	</link>
@@ -94,22 +87,50 @@
 
 
 <!-- JOINTS ********************************************************** -->
-	<macro name="joint_stat" params="name child parent origin_xyz" >
+	<macro name="joint_bogie_stat" params="name child parent orientation" >
     		<joint name="${name}" type="fixed">
-			<origin rpy="0 0 0" xyz="${origin_xyz}"/>
+		      <!-- <origin rpy="${1.570796*orientation} 0 0" xyz="0 ${-0.15516*orientation} 0"/> -->
+		      <origin rpy="${1.570796*orientation} 0 0" xyz="0 ${-0.15516*orientation} 0"/>
 			<child link="${child}"/>
-			<parent link="link_chassis"/>
+			<parent link="${parent}"/>
 			<axis rpy="1.570796 0 0" xyz="0 1 0"/>
 			<limit effort="10000" velocity="1000"/>
 			<joint_properties damping="1.0" friction="1.0"/>
 		</joint>
     	</macro>
-	<macro name="joint_rot" params="name child parent origin_xyz" >
+	<macro name="joint_bogie_rot" params="name child parent orientation" >
     		<joint name="${name}" type="continuous">
-			<origin rpy="0 0 0" xyz="${origin_xyz}"/>
+		     <!-- <origin rpy="0 ${(orientation ==-1)*3.14 + orientation*0.06925171} 0" xyz="0 0 0"/> -->
+			<origin rpy="0 0 ${(orientation ==-1)*3.14 + orientation*0.06925171}" xyz="0 0 0"/> 
 			<child link="${child}"/>
 			<parent link="${parent}"/>
-			<axis rpy="0 0 0" xyz="0 1 0"/>
+			<axis rpy="0 0 0" xyz="0 0 1"/>
+			<limit effort="10000" velocity="1000"/>
+			<joint_properties damping="1.0" friction="1.0"/>
+		</joint>
+    	</macro>
+<!--WHEEL JOINTS ********************************************************** -->
+	<macro name="wheel_joint_stat" params="name child parent orientation end" >
+    		<joint name="${name}" type="fixed">
+			<!-- one leg goes (0.4006 and -0.193183) while the other goes (-0.370 and -0.247057)  using vector magic the
+				wheel positions can be paramaterised for end =1 or end = -1 -->
+			<origin rpy="0 0 ${1.570796*orientation}" xyz="${0.0153 + 0.3853*end} ${-0.22012 + 0.026937*end} 0.17"/>
+			<child link="${child}"/>
+			<parent link="${parent}"/>
+			<axis rpy="1.570796 0 0" xyz="0 0 1"/>
+			<limit effort="10000" velocity="1000"/>
+			<joint_properties damping="1.0" friction="1.0"/>
+		</joint>
+    	</macro>
+	<macro name="wheel_joint_rot" params="name child parent orientation end" >
+    		<joint name="${name}" type="continuous">
+			<!--<origin rpy="0 0 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/> -->
+			<!--
+			<origin rpy="${1.570796*orientation} ${(orientation ==-1)*3.14} 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/> -->
+			<origin rpy="0 0 0" xyz="0 0 0.05"/>
+			<child link="${child}"/>
+			<parent link="${parent}"/>
+			<axis rpy="0 0 0" xyz="0 0 1"/>
 			<limit effort="10000" velocity="1000"/>
 			<joint_properties damping="1.0" friction="1.0"/>
 		</joint>
