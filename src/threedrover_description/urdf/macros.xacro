@@ -4,11 +4,23 @@
 	<macro name ="link_bogie_stat" params="name">
 		<link name="${name}">
 			<!-- values from the fusion360 files -->
-		    <inertial>
-		      <mass value="0.2"/>
-			
+		<inertial>	
+			<mass value="0.441"/>
+			<origin rpy="0 0 0" xyz="-0.00000069097  0.0002123 0.038"/>
+			<inertia
+				ixx =  "0.002"
+				ixy =  "-0.00003576"
+				ixz =  "-0.000000003393"
+				iyy =  "0.000779"
+				iyz =  "0.00000003725"
+				izz =  "0.002"
+			/>
+		</inertial> 
+
+		  <!--  <inertial>
+		      <mass value="0.441"/>
 		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
-		    </inertial>
+		    </inertial> -->
 		    <collision name="${name}_collision">
 			
 	      		<geometry>
@@ -28,11 +40,11 @@
 	<macro name ="link_bogie_rot" params="name">
 		<link name="${name}">
 			<!-- values from the fusion360 files -->
-		    <inertial>
-		      <mass value="0.2"/>
-			
-		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
-		    </inertial>
+		<inertial>	
+			<mass value="0.871251"/>
+			<origin rpy="0 0 0" xyz="0.004  -0.077 0.091"/>
+			<inertia ixx =  "0.009" ixy =  "-0.002" ixz =  "${-9.081*0.00001}" iyy =  "0.039" iyz =  "0.002" izz =  "0.045" />
+		</inertial>
 		    <visual name="${name}_visual">
 			
 		      	<geometry>
@@ -46,10 +58,11 @@
 	<macro name ="link_wheel_stat" params="name orientation end">
 		<link name="${name}">
 			<!-- values from the fusion360 files -->
-		    <inertial>
-		      <mass value="0.2"/>
-		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
-		    </inertial>
+			<inertial>	
+				<mass value="1.397"/>
+				<origin rpy="0 0 0" xyz="0.003  -0.003 0.013"/>
+				<inertia ixx =  "0.002" ixy =  "-0.000006590" ixz =  "0.0001390" iyy =  "0.002" iyz =  "-0.0000004779" izz =  "0.002" />
+			</inertial>
 		    <collision name="${name}_collision">
 	      		<geometry>
 				<cylinder length="0.05" radius="0.05"/>
@@ -66,10 +79,11 @@
 	<macro name ="link_wheel_rot" params="name  orientation end">
 		<link name="${name}">
 			<!-- values from the fusion360 files -->
-		    <inertial>
-		      <mass value="0.2"/>
-		      <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
-		    </inertial>
+			<inertial>	
+				<mass value="6.598"/>
+				<origin rpy="0 0 0" xyz="-0.003  -0.003 0.026"/>
+				<inertia ixx =  "0.031" ixy =  "0.0000002489" ixz =  "-0.000000001240" iyy =  "0.031" iyz =  "0.00000001531" izz =  "0.051" />
+			</inertial>
 		    <collision name="${name}_collision">
 				<geometry>
 			<!--	<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" /> -->

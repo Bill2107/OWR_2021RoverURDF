@@ -10,14 +10,14 @@
 		<!-- values calculated in fusion360 -->
 		<inertial>	
 			<mass value="2.441483"/>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<origin rpy="0 0 0" xyz="0  0 0"/>
 			<inertia
-				ixx =  "0.06062"
-				ixy =  "0.0003601"
-				ixz = "-0.00002478"
-				iyy =  "0.0003601"
-				iyz =  "0"
-				izz =  "0.08117"
+				ixx =  "0.061"
+				ixy =  "${3.601*0.0001}"
+				ixz =  "${-2.478*0.00001}"
+				iyy =  "${0.119}"
+				iyz =  "${5.191*0.0000001}"
+				izz =  "${0.081}"
 			/>
 		</inertial>
 		<collision>
