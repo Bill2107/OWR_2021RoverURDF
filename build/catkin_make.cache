@@ -1,2 +1,2 @@
-threedrover_description
+bandicoot_software/skid_steer_robot:threedrover_description
 -DCATKIN_DEVEL_PREFIX=/home/billb/rover_ws/devel -DCMAKE_INSTALL_PREFIX=/home/billb/rover_ws/install -G Unix Makefiles

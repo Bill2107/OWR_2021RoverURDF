@@ -123,10 +123,21 @@
 			<joint_properties damping="1.0" friction="1.0"/>
 		</joint>
     	</macro>
+	<macro name="joint_bogie_stat2" params="name child parent orientation" >
+    		<joint name="${name}" type="fixed">
+		      <!-- <origin rpy="${1.570796*orientation} 0 0" xyz="0 ${-0.15516*orientation} 0"/> -->
+		      <origin rpy="0 3.14159 0.11" xyz="0 0 ${-2*0.15516}"/>
+			<child link="${child}"/>
+			<parent link="${parent}"/>
+			<axis rpy="1.570796 0 0" xyz="0 1 0"/>
+			<limit effort="10000" velocity="1000"/>
+			<joint_properties damping="1.0" friction="1.0"/>
+		</joint>
+    	</macro>
 	<macro name="joint_bogie_rot" params="name child parent orientation" >
     		<joint name="${name}" type="continuous">
 		     <!-- <origin rpy="0 ${(orientation ==-1)*3.14 + orientation*0.06925171} 0" xyz="0 0 0"/> -->
-			<origin rpy="0 0 ${(orientation ==-1)*3.14 + orientation*0.06925171}" xyz="0 0 0"/> 
+			<origin rpy="0 0 ${(orientation ==-1)*3.14159}" xyz="0 0 0"/> 
 			<child link="${child}"/>
 			<parent link="${parent}"/>
 			<axis rpy="0 0 0" xyz="0 0 1"/>
