@@ -36,6 +36,10 @@
      			<material name="white"/>
 		</visual>
 	</link>
+	<!-- Differential -->
+		<!-- Diif bar -->
+		
+
 	<!-- Bogie -->
 	<xacro:link_bogie_stat name="link_right_bogie_stat" />  
 	<xacro:link_bogie_rot name="link_right_bogie_rot"/>
@@ -45,7 +49,7 @@
 	<xacro:joint_bogie_stat name="joint_bogie_left_stat" child="link_left_bogie_stat" parent="link_chassis"   orientation="-1"/>
 	<xacro:joint_bogie_stat name="joint_bogie_right_stat" child="link_right_bogie_stat" parent="link_chassis"  orientation="1"/>
 	<xacro:joint_bogie_rot name="joint_bogie_right_rot" child="link_right_bogie_rot" parent="link_right_bogie_stat"  orientation="1"/>
-	<xacro:joint_bogie_stat2 name="joint_bogie_left_rot" child="link_left_bogie_rot" parent="link_right_bogie_rot" orientation="-1"/>
+	<xacro:joint_bogie_rot name="joint_bogie_left_rot" child="link_left_bogie_rot" parent="link_left_bogie_stat" orientation="-1"/> 
 	
 	<!-- Wheel -->
 
