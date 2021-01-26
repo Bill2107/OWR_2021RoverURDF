@@ -2,19 +2,21 @@
 <robot>
 
 	<gazebo>
- 		<plugin name="ss_drive" filename="libgazebo_ros_skid_steer_drive.so">
+ 		<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
 	   		<updateRate>100.0</updateRate>
 			<robotNamespace>/</robotNamespace>
 			<leftFrontJoint>wheel_FL</leftFrontJoint>
 			<rightFrontJoint>wheel_FR</rightFrontJoint>
 			<leftRearJoint>wheel_BL</leftRearJoint>
 			<rightRearJoint>wheel_BR</rightRearJoint>
-			<wheelSeparation>0.77</wheelSeparation>
+			<wheelSeparation>0.773108</wheelSeparation>
 			<wheelDiameter>0.2</wheelDiameter>
 			<robotBaseFrame>link_chassis</robotBaseFrame>
-			<torque>10</torque>
+			<torque>20</torque>
 			<topicName>cmd_vel</topicName>
-			<broadcastTF>false</broadcastTF>
+			<broadcastTF>true</broadcastTF>
+			<odometryTopic>odom</odometryTopic> 
+			<odometryFrame>odom</odometryFrame> 
 		</plugin>
 
 		

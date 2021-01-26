@@ -85,14 +85,25 @@
 				<inertia ixx =  "0.031" ixy =  "0.0000002489" ixz =  "-0.000000001240" iyy =  "0.031" iyz =  "0.00000001531" izz =  "0.051" />
 			</inertial>
 		    <collision name="${name}_collision">
+				<origin rpy="0 0 0" xyz="0  0 0"/>
 				<geometry>
-			<!--	<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" /> -->
+			<!--	<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" /> ${3.14159*orientation*(-1)}-->
 				<cylinder length="0.098" radius="0.1"/>
 			</geometry>
+			<friction>
+				<ode>
+					<mu> 2 </mu>
+					<mu2> 1.8 </mu2>
+				</ode>
+			</friction>
+			<contact>
+				<min_depth>0.01</min_depth>
+			</contact>
 		    </collision>
 		    <visual name="${name}_visual">
+				<origin rpy="${3.14159*orientation*(-1)} 0 0" xyz="0  0 0.026"/>
 		      	<geometry> 
-					<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" /> 
+				<mesh filename="package://threedrover_description/MODELS/OWR_20_DRIVE_00_ASM_ROT.stl" scale="0.001 0.001 0.001" /> 
 				<!--<cylinder length="0.098" radius="0.1"/> -->
 		     	 </geometry>
 		    </visual>
@@ -125,7 +136,7 @@
     	</macro>
 	<macro name="joint_bogie_rot2" params="name child parent orientation mimic" >
     		<joint name="${name}" type="continuous">
-		      <!-- <origin rpy="${1.570796*orientation} 0 ${0.26937/2}" xyz="0 ${-0.15516*orientation} 0"/> -->
+		      <!-- <origin rpy="${1.570796*orientation} 0 ${0.26937/2}" xyz="0 ${-0.15516*orientation} 0"/>${(orientation ==-1)*3.14159} -->
 		      <origin rpy="0 0 ${(orientation ==-1)*3.14159}" xyz="0 0 0"/>
 			<child link="${child}"/>
 			<parent link="${parent}"/>
@@ -137,13 +148,13 @@
     	</macro>
 	<macro name="joint_bogie_rot" params="name child parent orientation" >
     		<joint name="${name}" type="continuous">
-		     <!-- <origin rpy="0 ${(orientation ==-1)*3.14 + orientation*0.06925171} 0" xyz="0 0 0"/> -->
+		     <!-- <origin rpy="0 ${(orientation ==-1)*3.14 + orientation*0.06925171} 0" xyz="0 0 0"/> ${(orientation ==-1)*3.14159}-->
 			<origin rpy="0 0 ${(orientation ==-1)*3.14159}" xyz="0 0 0"/> 
 			<child link="${child}"/>
 			<parent link="${parent}"/>
 			<axis rpy="0 0 0" xyz="0 0 1"/>
 			<limit effort="10000" velocity="1000"/>
-			<joint_properties damping="1.0" friction="1.0"/>
+			<joint_properties damping="10.0" friction="100.0"/>
 		</joint>
     	</macro>
 <!--WHEEL JOINTS ********************************************************** -->
@@ -151,7 +162,7 @@
     		<joint name="${name}" type="fixed">
 			<!-- one leg goes (0.4006 and -0.193183) while the other goes (-0.370 and -0.247057)  using vector magic the
 				wheel positions can be paramaterised for end =1 or end = -1 -->
-			<origin rpy="0 0 ${1.570796*orientation}" xyz="${0.0153 + 0.3853*end} ${-0.22012 + 0.026937*end} 0.17"/>
+			<origin rpy="${(orientation ==1)*3.14159} 0 ${1.570796*orientation}" xyz="${0.0153 + 0.3853*end} ${-0.22012 + 0.026937*end} 0.17"/>
 			<child link="${child}"/>
 			<parent link="${parent}"/>
 			<axis rpy="1.570796 0 0" xyz="0 0 1"/>
@@ -164,7 +175,7 @@
 			<!--<origin rpy="0 0 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/> -->
 			<!--
 			<origin rpy="${1.570796*orientation} ${(orientation ==-1)*3.14} 0" xyz="${-0.3865*end} ${-(0.15516+0.134 + 0.078)*orientation} -0.22012"/> -->
-			<origin rpy="0 0 ${1.570796*orientation}" xyz="0 0 0.05"/>
+			<origin rpy="0 0 ${1.570796*orientation}" xyz="0 0 ${0.05*orientation*(-1)}"/>
 			<child link="${child}"/>
 			<parent link="${parent}"/>
 			<axis rpy="0 0 0" xyz="0 0 1"/>

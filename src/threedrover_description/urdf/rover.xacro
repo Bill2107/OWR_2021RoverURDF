@@ -21,11 +21,11 @@
 			/>
 		</inertial>
 		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
 			<geometry>
 				<!--Again this is from the fusion360-->
 				<box size = "0.511 0.4 0.208"/>
 			</geometry>
-			<origin rpy="1.570796 0 0" xyz="0 0 0"/>
 		</collision>
 		<visual>
 			<geometry>				
