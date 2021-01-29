@@ -1,12 +1,31 @@
 <?xml version="1.0"?>
 <launch>
+	<!-- <group ns = "/owr_rover"> -->
+	<!--<include file="$(find gazebo_ros)/launch/empty_world.launch"/>-->
 
-	<param name="robot_description" command="$(find xacro)/xacro.py '$(find threedrover_description)/urdf/rover.xacro'"/>
+	<!-- Define Robot Model-->
+	<param name="robot_description" command="$(find xacro)/xacro.py --inorder '$(find threedrover_description)/urdf/rover.xacro'"/>
 
+	<!-- Default Spawn Location -->
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
 	<arg name="z" default="0.5"/>
 
+	<!-- Spawn the Model -->
 	<node name="rover_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-		args="-urdf -param robot_description -model rover -x $(arg x) -y $(arg y) -z $(arg z)"/>
+		args="-urdf -param robot_description -model owr_rover -x $(arg x) -y $(arg y) -z $(arg z)"/>
+
+	<!-- Load Controller -->
+	<rosparam file="$(find threedrover_description)/config/rover_controller.yaml" command="load"/>
+
+	<!-- Spawn the Controller -->
+		<node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/owr_rover" respawn="false" 
+			output="screen"  args="
+			 joint_state_controller
+			 wheel_FL_Vel_controller
+			 wheel_FR_Vel_controller
+			 wheel_BL_Vel_controller
+			 wheel_BR_Vel_controller">
+ 		 </node>
+	<!-- </group> -->
 </launch>

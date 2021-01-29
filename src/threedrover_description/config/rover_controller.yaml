@@ -1,0 +1,24 @@
+owr_rover:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+
+  wheel_FL_Vel_controller:
+    type: effort_controllers/JointVelocityController
+    joint: wheel_FL
+    pid: {p: 100.0, i: 0.01, d: 1}
+  wheel_FR_Vel_controller:
+    type: effort_controllers/JointVelocityController
+    joint: wheel_FR
+    pid: {p: 100.0, i: 0.01, d: 1}
+  wheel_BL_Vel_controller:
+    type: effort_controllers/JointVelocityController
+    joint: wheel_BL
+    pid: {p: 100.0, i: 0.01, d: 1}
+  wheel_BR_Vel_controller:
+    type: effort_controllers/JointVelocityController
+    joint: wheel_BR
+    pid: {p: 100.0, i: 0.01, d: 1}

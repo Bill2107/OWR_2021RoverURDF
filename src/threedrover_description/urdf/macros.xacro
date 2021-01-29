@@ -92,12 +92,12 @@
 			</geometry>
 			<friction>
 				<ode>
-					<mu> 2 </mu>
-					<mu2> 1.8 </mu2>
+					<mu> 0.9 </mu>
+					<mu2> 0.8 </mu2>
 				</ode>
 			</friction>
 			<contact>
-				<min_depth>0.01</min_depth>
+				<min_depth>0.001</min_depth>
 			</contact>
 		    </collision>
 		    <visual name="${name}_visual">
@@ -179,9 +179,23 @@
 			<child link="${child}"/>
 			<parent link="${parent}"/>
 			<axis rpy="0 0 0" xyz="0 0 1"/>
-			<limit effort="10000" velocity="1000"/>
-			<joint_properties damping="1.0" friction="1.0"/>
+			<limit
+			lower="0"
+			upper="3.14"	
+			effort="2"
+			velocity="2.0" />
+			<joint_properties damping="1.0" friction="0.2"/>
 		</joint>
+		<transmission name="trans_${name}">
+				<type>transmission_interface/SimpleTransmission</type>
+				<joint name="${name}">
+					<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+				</joint>
+				<actuator name="motor_${name}">
+					<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+					<mechanicalReduction>1</mechanicalReduction>
+				</actuator>
+			</transmission>
     	</macro>
 
 </robot>

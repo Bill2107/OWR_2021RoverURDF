@@ -9,6 +9,11 @@ project(threedrover_description)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   urdf
+  controller_manager
+  joint_state_controller
+  robot_state_publisher
+    roscpp
+    std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,6 +110,9 @@ catkin_package(
 #  LIBRARIES threedrover_description
 #  CATKIN_DEPENDS urdf
 #  DEPENDS system_lib
+    INCLUDE_DIRS include
+    LIBRARIES $(PROJECT_NAME)
+    CATKIN_DEPENDS roscpp std_msgs
 )
 
 ###########
@@ -115,7 +123,8 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
-  ${catkin_INCLUDE_DIRS}
+    include
+    ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -138,6 +147,9 @@ include_directories(
 ## target back to the shorter version for ease of user use
 ## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
 # set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
+
+add_executable(example_node src/example_node.cpp src/example_main.cpp)
+target_link_libraries(example_node ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above

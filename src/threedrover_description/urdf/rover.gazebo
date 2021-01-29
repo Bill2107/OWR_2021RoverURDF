@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <robot>
-
+	
+<!-- Rover Controller -->
 	<gazebo>
- 		<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+ 		<!--<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
 	   		<updateRate>100.0</updateRate>
 			<robotNamespace>/</robotNamespace>
 			<leftFrontJoint>wheel_FL</leftFrontJoint>
@@ -17,12 +18,16 @@
 			<broadcastTF>true</broadcastTF>
 			<odometryTopic>odom</odometryTopic> 
 			<odometryFrame>odom</odometryFrame> 
-		</plugin>
-
+		</plugin>-->
 		
-	</gazebo>
+		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+			<robotNamespace>/owr_rover</robotNamespace>
+		</plugin>
+		
+	</gazebo> 
 	
-	<gazebo reference="camera_link">
+
+<gazebo reference="camera_link">
 	    <sensor type="camera" name="camera1">
 	      <update_rate>30.0</update_rate>
 	      <camera name="head">
@@ -97,5 +102,6 @@
       </plugin>
     </sensor>
   </gazebo>
+	
 
 </robot>
